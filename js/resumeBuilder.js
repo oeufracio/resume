@@ -34,7 +34,16 @@ var work = {
 };
 
 
-
+var projects = {
+    "projects": [
+    {
+        "title":"Portafolio Site",
+        "dates": "2016",
+        "description":"Responsive website to display the portfolio projects I built in the Front-End Developer Nanodegree",
+        "images": ["./images/p1-sm.png", "./images/p2-sm.png" ]
+    }
+    ]
+};
 
 
 
@@ -77,7 +86,28 @@ work.display = function() {
 }
 
 
+projects.display = function() {
+
+    for( var i=0; i < projects.projects.length; i++) 
+    {
+        $("#projects").append( HTMLprojectStart );
+
+        $(".project-entry:last").append( HTMLprojectTitle.replace("%data%",projects.projects[i].title) );
+        $(".project-entry:last").append( HTMLprojectDates.replace("%data%",projects.projects[i].dates) );
+        $(".project-entry:last").append( HTMLprojectDescription.replace("%data%",projects.projects[i].description) );
+
+        for( var j=0; j < projects.projects[i].images.length; j++) 
+        {
+            $(".project-entry:last").append( HTMLprojectImage.replace("%data%",projects.projects[i].images[j]) );            
+        }
+    }
+}
+
+
+
 /* Call all display functions*/
 bio.display();
 
 work.display();
+
+projects.display();
