@@ -46,6 +46,48 @@ var projects = {
 };
 
 
+//Education information
+var education = {
+    "schools": [
+    {
+        "name": "Center for Research in Mathematics (CIMAT)",
+        "location": "Guanajuato Guanajuato Mexico",
+        "degree": "PhD",
+        "majors": ["Computer Science and Mathematics"],
+        "dates": "2016 - present"
+    },
+    {
+        "name": "Center for Research in Mathematics (CIMAT)",
+        "location": "Guanajuato Guanajuato Mexico",
+        "degree": "MSc",
+        "majors": ["Computer Science and Mathematics"],
+        "dates": "2013 - 2015"
+    },
+    {
+        "name": "Fraunhofer Academy",
+        "location": "Munich Germany",
+        "degree": "Specialization",
+        "majors": ["Innovation and Technology Management"],
+        "dates": "2011 - 2012"
+    },
+    {
+        "name": "La Salle",
+        "location": "Victoria Tamaulipas Mexico",
+        "degree": "BE",
+        "majors": ["Industrial Engineering"],
+        "dates": "2001 - 2006"
+    }    
+    ],
+    "onlineCourses": [
+        {
+            "title":"Front-End Developer Nanodegree",
+            "school": "Udacity",
+            "dates": "2016",
+            "url":"https://www.udacity.com/"
+        }]
+};
+
+
 
 /* Display functions for each object */
 bio.display = function() {
@@ -87,7 +129,6 @@ work.display = function() {
 
 
 projects.display = function() {
-
     for( var i=0; i < projects.projects.length; i++) 
     {
         $("#projects").append( HTMLprojectStart );
@@ -104,6 +145,38 @@ projects.display = function() {
 }
 
 
+education.display = function() {
+    for( var i=0; i< education.schools.length; i++)
+    {
+        $("#education").append( HTMLschoolStart );
+
+        var Name_Degree = HTMLschoolName.replace("%data%",education.schools[i].name) + HTMLschoolDegree.replace("%data%",education.schools[i].degree);
+        $(".education-entry:last").append( Name_Degree );
+        $(".education-entry:last").append( HTMLschoolDates.replace("%data%",education.schools[i].dates) );
+        $(".education-entry:last").append( HTMLschoolLocation.replace("%data%",education.schools[i].location) );
+
+        for(var j=0; j < education.schools[i].majors.length; j++)
+        {
+            $(".education-entry:last").append( HTMLschoolMajor.replace("%data%",education.schools[i].majors ) );    
+        }
+    }
+
+    if( education.onlineCourses.length )
+    {
+        $("#education").append( HTMLonlineClasses );
+    
+        for( var i=0; i < education.onlineCourses.length; i++)
+        {
+            $("#education").append( HTMLschoolStart );
+
+            var Tile_School = HTMLonlineTitle.replace("%data%",education.onlineCourses[i].title ) + HTMLonlineSchool.replace("%data%",education.onlineCourses[i].school );
+            $(".education-entry:last").append( Tile_School );
+            $(".education-entry:last").append( HTMLonlineDates.replace("%data%",education.onlineCourses[i].dates) );
+            $(".education-entry:last").append( HTMLonlineURL.replace("%data%",education.onlineCourses[i].url) );
+        }
+    }
+}
+
 
 /* Call all display functions*/
 bio.display();
@@ -111,3 +184,8 @@ bio.display();
 work.display();
 
 projects.display();
+
+education.display();
+
+/* Display Map */
+$("#mapDiv").append( googleMap )
