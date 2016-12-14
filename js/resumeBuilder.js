@@ -15,6 +15,28 @@ var bio = {
 };
 
 
+var work = {
+    "jobs": [
+    {
+        "employer":"Mante Institute of Technology",
+        "title": "Head of Industrial Engineering",
+        "location": "Mante Tamaulipas Mexico",
+        "dates": "2008 - 2011",
+        "description":"Planning of the activities related to the launch of a public university."
+    },
+    {
+        "employer":"Delphi",
+        "title": "Industrial Enngineer",
+        "location": "Victoria Tamaulipas Mexico",
+        "dates": "2006-2008",
+        "description":"Coordination of multidisciplinary teams in order to implement engineering changes and launch of new production processes."
+    }]
+};
+
+
+
+
+
 
 /* Display functions for each object */
 bio.display = function() {
@@ -41,6 +63,21 @@ bio.display = function() {
 }
 
 
+work.display = function() {
+    for( var i=0; i < work.jobs.length; i++) 
+    {
+        $("#workExperience").append( HTMLworkStart );
+        
+        $(".work-entry:last").append( HTMLworkEmployer.replace("%data%",work.jobs[i].employer) );
+        $(".work-entry:last").append( HTMLworkTitle.replace("%data%",work.jobs[i].title) );
+        $(".work-entry:last").append( HTMLworkDates.replace("%data%",work.jobs[i].dates) );
+        $(".work-entry:last").append( HTMLworkLocation.replace("%data%",work.jobs[i].location) );
+        $(".work-entry:last").append( HTMLworkDescription.replace("%data%",work.jobs[i].description) );
+    }
+}
+
 
 /* Call all display functions*/
 bio.display();
+
+work.display();
