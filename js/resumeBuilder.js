@@ -177,6 +177,12 @@ education.display = function() {
     }
 }
 
+function display_Footer_Contacts () {
+    $("#footerContacts").append( HTMLmobile.replace("%data%",bio.contacts.mobile) );
+    $("#footerContacts").append( HTMLemail.replace("%data%",bio.contacts.email) );
+    $("#footerContacts").append( HTMLgithub.replace("%data%",bio.contacts.github) );
+    $("#footerContacts").append( HTMLlocation.replace("%data%",bio.contacts.location) );
+}
 
 /* Call all display functions*/
 bio.display();
@@ -186,6 +192,9 @@ work.display();
 projects.display();
 
 education.display();
+
+display_Footer_Contacts();
+
 
 /* Display Map */
 $("#mapDiv").append( googleMap )
